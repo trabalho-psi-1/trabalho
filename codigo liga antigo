@@ -1,0 +1,186 @@
+def game():
+    print('*' * 26)
+    print('       [Bem-vindo]        ')
+    print('*' * 26)
+    print('[1]      Começar          ')
+    print('[2]       Sair            ')
+    print('*' * 26)
+    op1 = int(input(''))
+    if op1 == 1:
+        liga()
+    elif op1 == 2:
+        print('Obrigado por experimentar o meu projeto')
+        quit()
+    while op1 != 1 and op1 != 2:
+        print('Escolha inválida [1 ou 2]')
+        op1 = int(input(''))
+
+
+def liga():
+    print('*' * 27)
+    print('*         [Ligas]         *')
+    print('*' * 27)
+    print('*[1]      La Liga         *')
+    print('*[2]  Premier League      *')
+    print('*[3]    Bundersliga       *')
+    print('*[4]      Ligue 1         *')
+    print('*[5]      Serie A         *')
+    print('*[6]     Liga NOS         *')
+    print('*[7]    Brasileirão       *')
+    print('*' * 27)
+    liga.liga = int(input(''))
+    while liga.liga != 1 and liga.liga != 2 and liga.liga != 3 and liga.liga != 4 and liga.liga != 5 and liga.liga != 6 and liga.liga != 7:
+        print('Escolha Inválida [1 a 7]')
+        liga.liga = int(input(''))
+
+    if liga.liga == 1:
+        liga.campeonato = 'La Liga'
+    elif liga.liga == 2:
+        liga.campeonato = 'Premier League'
+    elif liga.liga == 3:
+        liga.campeonato = 'Bundersliga'
+    elif liga.liga == 4:
+        liga.campeonato = 'Ligue 1'
+    elif liga.liga == 5:
+        liga.campeonato = 'Serie A'
+    elif liga.liga == 6:
+        liga.campeonato = 'Liga Nos'
+    elif liga.liga == 7:
+        liga.campeonato = 'Brasileirão'
+
+    menu2()
+
+
+def menu2():
+    import random
+    import time
+    liga2 = []
+    season = 0
+    listaequipa = []
+    equipas = []
+    a = 1
+    v = 0
+    e = 0
+    d = 0
+    f = 1
+    jogos = 0
+    z = []
+    jogosu = 1
+    op2 = liga.liga
+    listaequipa2 = []
+    equipa2 = 0
+
+    laliga = []
+    premier = []
+    bunder = []
+    ligue1 = []
+    seriea = ['Juventus', 'Napoli', 'Inter', 'Milan', 'Roma', 'Sampdoria', 'Atalanta', 'Lazio', 'Fiorentina', 'Torino',
+              'Sassuolo', 'Parma', 'Genoa', 'Cagliari', 'SPAL', 'Udinese', 'Empoli', 'Bologna', 'Frosinone', 'Chievo']
+    nos = []
+    brasileirao = []
+
+    print('*' * 30)
+    if op2 == 1:
+        print('Escolha a sua equipa entre: \n {}'.format(laliga))
+        liga2 = laliga
+        season += 1
+    elif op2 == 2:
+        print('Escolha a sua equipa entre: \n {}'.format(premier))
+        liga2 = premier
+        season += 1
+    elif op2 == 3:
+        print('Escolha a sua equipa entre: \n {}'.format(bunder))
+        liga2 = bunder
+        season += 1
+    elif op2 == 4:
+        print('Escolha a sua equipa entre: \n {}'.format(ligue1))
+        liga2 = ligue1
+        season += 1
+    elif op2 == 5:
+        print('Escolha a sua equipa entre: \n {}'.format(seriea))
+        liga2 = seriea
+        season += 1
+    elif op2 == 6:
+        print('Escolha a sua equipa entre: \n {}'.format(nos))
+        liga2 = nos
+        season += 1
+    elif op2 == 7:
+        print('Escolha a sua equipa entre: \n {}'.format(brasileirao))
+        liga2 = brasileirao
+        season += 1
+    print('*' * 30)
+    op3 = (input(''))
+    while op3 not in liga2:
+        print('Escolha inválida! A escolha tem de ser o nome de um dos clubes.')
+        op3 = (input('Digite o nome da sua equipa:'))
+    golos = ['0'] * 30 + ['1'] * 30 + ['2'] * 20 + ['3'] * 8 + ['4'] * 5 + ['5'] * 3 + ['6'] * 2 + ['7'] * 1
+    equipas2 = liga2
+    liga2.remove(op3)
+    equipas = liga2
+
+    for m in range(0, 99):
+        try:
+            z = equipas[m]
+        except IndexError:
+            a += 1
+            if a == 3:
+                break
+        else:
+            equipa = equipas[m]
+            pontos = random.randint(0, 57)
+            equipa = equipa, pontos
+            listaequipa.append(equipa)
+
+    for i in range(0, 99):
+        try:
+            c = equipas2[i]
+        except IndexError:
+            f = 0
+            break
+        else:
+            if f != 0:
+                time.sleep(2)
+                print('')
+                print('*' * 27)
+                print('         [Jogo {}]         '.format(jogosu))
+                print('*' * 27)
+                jogos += 1
+                print(op3, ' vs ', equipas2[i])
+                g1 = random.choice(golos)
+                g2 = random.choice(golos)
+                print(g1, '-', g2)
+                jogosu += 1
+                if g1 < g2:
+                    v += 1
+                elif g1 == g2:
+                    e += 1
+                else:
+                    d += 1
+
+    p = (v * 3) + e
+
+    print('*' * 27)
+    print('          [Scores]       ')
+    print('*' * 27)
+
+    listaequipapontos = []
+    for i in range(1, 33):
+        if type(listaequipa[0]) == str:
+            listaequipa.remove(listaequipa[i])
+    print(listaequipa)
+    for i in range(1, jogos + 1):
+        listaequipapontos = [listaequipa[i % 2 == 0]]
+
+    listaequipapontos.sort(reverse=True)
+    print(listaequipa)
+
+    print('')
+    print('*' * 65)
+    print('Estatisticas da {} na {} Temporada da {}:'.format(op3, season, liga.campeonato))
+    print('*' * 65)
+    print('')
+    print('Vitórias: {}'.format(v))
+    print('Empates: {}'.format(e))
+    print('Derrotas: {}'.format(d))
+    print('')
+    print('Pontos: {}'.format(p))
